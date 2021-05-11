@@ -1,3 +1,6 @@
+// Using only for loop and without pointer
+
+
 string reverseWord(string str){
 
     int n= str.length();
