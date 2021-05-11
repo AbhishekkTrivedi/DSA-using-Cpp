@@ -1,0 +1,32 @@
+// Move all negative numbers to beginning and positive to end with constant extra space.(Using while loop & 'Swap' to satisfy constraint of CONSTANT EXTRA SPACE)
+
+
+#include <iostream>
+using namespace std;
+
+void neg_sort(int x[],int k){
+
+    int i = 0;
+    int j = k-1;
+    
+    while(i<j){
+        if (x[i]<0){
+            i++;
+        }
+        else{
+            swap(x[i],x[j]);
+            j--;
+        }
+    };
+    return;
+};
+
+
+int main() {
+    int x[8]= {-7,-4,6,-2,5,-4,3,-1};
+    int n = sizeof(x) / sizeof(x[0]);
+    neg_sort(x, n);
+	for (int i = 0; i < n; ++i)
+        cout << x[i] << " ";
+	return 0;
+}
