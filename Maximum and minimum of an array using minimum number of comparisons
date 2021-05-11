@@ -1,1 +1,25 @@
+//Finding Maximum valued element in array having each distinct entry (Without minimum no. of comparison constraint) 
 
+#include <iostream>
+using namespace std;
+
+int max(int x[],int k){
+    
+    int m = x[0];
+    
+    for(int i=0; i<k ; i++){
+      if (m< x[i]){
+          m = x[i];
+      };
+    };
+    return m;
+};
+
+
+int main() {
+    int x[5]= {1,2,5,4,3};
+    int n = sizeof(x) / sizeof(x[0]);
+    int k = max(x, n);
+	cout<<"maximum is"<<k;
+	return 0;
+}
