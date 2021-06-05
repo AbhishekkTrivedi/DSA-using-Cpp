@@ -1,0 +1,36 @@
+//Given a Binary Tree, print Left view of it. Left view of a Binary Tree is set of nodes visible when tree is visited from Left side. The task is to complete the function leftView(), which accepts root of the tree as argument.
+
+Left view of following tree is 1 2 4 8.
+
+          1
+       /     \
+     2        3
+   /     \    /    \
+  4     5   6    7
+   \
+     8   
+     
+     
+     //code:-
+     
+vector<int> leftView(Node *root)
+ {
+   vector<int> left_arr;
+   queue <Node*> q;
+  
+   if (!root) return left_arr;
+   q.push(root);
+   
+   while (!q.empty()){
+       int level_size = q.size();
+       left_arr.push_back(q.front()-> data);
+       
+       while (level_size--){
+            Node* temp = q.front();
+            q.pop();
+            if (temp ->left) q.push(temp->left);
+            if (temp -> right) q.push(temp->right);
+       }
+   }
+   return left_arr;
+}
