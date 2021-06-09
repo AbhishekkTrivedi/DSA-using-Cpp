@@ -1,0 +1,65 @@
+//Given a binary tree, print the bottom view from left to right.
+A node is included in bottom view if it can be seen when we look at the tree from bottom.
+
+                      20
+                    /    \
+                  8       22
+                /   \        \
+              5      3       25
+                    /   \      
+                  10    14
+
+For the above tree, the bottom view is 5 10 3 14 25.
+If there are multiple bottom-most nodes for a horizontal distance from root, then print the later one in level traversal. For example, in the below diagram, 3 and 4 are both the bottommost nodes at horizontal distance 0, we need to print 4.
+
+                      20
+                    /    \
+                  8       22
+                /   \     /   \
+              5      3 4     25
+                     /    \      
+                 10       14
+
+For the above tree the output should be 5 10 4 14 25.
+ 
+---------------------------------------------------------------------------------* * * * *---------------------------------------------------------------------------------------
+Code:-
+
+void view (Node* root,int d,int h,map <int, pair <int,int>> & m)
+{
+   
+    if(root==NULL)
+      return;
+      
+  if (m.find(d) == m.end()){
+    m[d] = make_pair(root->data,h);
+  }
+  else {
+    
+    pair<int,int> p = m[d];
+     if(p.second<=h)
+     {
+         m[d].second = h;
+         m[d].first= root->data;
+     }
+   
+  } 
+  view (root->left,d-1,h+1,m);
+  view (root->right,d+1,h+1,m);
+}
+
+
+vector <int> bottomView(Node *root)
+{
+    map < int, pair < int, int > > m;
+    view (root, 0, 0, m);
+    vector<int> v;
+     
+    map < int, pair < int, int > > ::iterator it; //iterator is used here to iterate over defined map data_structure
+    for (it = m.begin(); it != m.end(); ++it)
+    {
+        pair < int, int > p = it -> second;
+        v.push_back(p.first);
+    }
+     return v;
+}
