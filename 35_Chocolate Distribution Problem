@@ -1,0 +1,20 @@
+Given an array of n integers where each value represents the number of chocolates in a packet. Each packet can have a variable number of chocolates. 
+
+There are m students, the task is to distribute chocolate packets such that: 
+ 1) Each student gets one packet.
+ 2) The difference between the number of chocolates in the packet with maximum chocolates and packet with minimum chocolates given to the students is minimum.
+ 
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+ long long findMinDiff(vector<long long> a, long long n, long long m){
+             sort(a.begin(), a.end());
+             //cout << "Sorted \n";
+             //for (auto x : a)
+             //cout << x << " ";
+             int ans=a[m-1]-a[0];
+             for (int i=1; i<=n-m;i++){
+                 if (a[i+m-1]-a[i]<ans) 
+                 ans = a[i+m-1]-a[i];
+             }
+              return ans;
+    }   
